@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-add-optional-chaining",
   "version": "1.0.0",
-  "description": "",
+  "description": "Automatically add optional chaining to all members",
   "main": "./lib/index.js",
   "scripts": {
     "build": "node build"
@@ -15,6 +15,14 @@
     "import": "./es/index.js",
     "require": "./lib/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jl917/babel-plugin-add-optional-chaining.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jl917/babel-plugin-add-optional-chaining/issues"
+  },
+  "homepage": "https://github.com/jl917/babel-plugin-add-optional-chaining#readme",
   "files": [
     "lib",
     "es",
@@ -35,5 +43,9 @@
   "dependencies": {
     "@babel/traverse": "^7.25.0",
     "@babel/types": "^7.25.0"
+  },
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
   }
 }
