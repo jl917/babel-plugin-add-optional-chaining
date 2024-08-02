@@ -1,3 +1,10 @@
+# [1.0.0-next.3](https://github.com/jl917/babel-plugin-add-optional-chaining/compare/v1.0.0-next.2...v1.0.0-next.3) (2024-08-02)
+
+
+### Bug Fixes
+
+* 무한루프 오류 수정 ([30f25c4](https://github.com/jl917/babel-plugin-add-optional-chaining/commit/30f25c4208c0adf0938c97ce013d22bb6f65b813))
+
 # [1.0.0-next.2](https://github.com/jl917/babel-plugin-add-optional-chaining/compare/v1.0.0-next.1...v1.0.0-next.2) (2024-08-02)
 
 
