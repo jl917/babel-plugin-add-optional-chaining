@@ -18,22 +18,16 @@ export default function () {
 
         // 현재 노드의 루트 객체 탐색
         let current = path.node.object;
+        let shouldReplace = false;
 
         // CallExpression이 루트일 경우 옵셔널 체이닝 처리
         if (t.isCallExpression(current)) {
-          path.replaceWith(
-            t.optionalMemberExpression(
-              path.node.object,
-              path.node.property as t.Expression,
-              path.node.computed,
-              true
-            )
-          );
-          return;
+          shouldReplace = true;
         }
 
         // 일반적인 루트 객체 탐색
         while (t.isMemberExpression(current)) {
+          if (current.optional) return; // 이미 옵셔널 체이닝이 있는 경우
           current = current.object;
         }
 
@@ -41,20 +35,24 @@ export default function () {
         const parent = path.findParent((p) => p.isVariableDeclarator());
 
         // 객체 리터럴이 아닌 경우에만 적용 (예: function 호출의 반환값에 대해)
-        if (t.isIdentifier(current) || t.isThisExpression(current)) {
-          // 객체 리터럴의 속성 접근이 아닌 경우에만 옵셔널 체이닝 적용
-          if (!parent || !t.isObjectExpression(parent.node)) {
-            // 루트부터 각 단계에 대해 옵셔널 체이닝 추가
-            const newObject = t.optionalMemberExpression(
-              path.node.object,
-              path.node.property as t.Expression,
-              path.node.computed,
-              true
-            );
+        if (
+          (t.isIdentifier(current) || t.isThisExpression(current)) &&
+          (!parent || !t.isObjectExpression(parent.node))
+        ) {
+          shouldReplace = true;
+        }
 
-            // 기존 노드를 새 옵셔널 체이닝 노드로 교체
-            path.replaceWith(newObject);
-          }
+        // 루트부터 각 단계에 대해 옵셔널 체이닝 추가
+        if (shouldReplace) {
+          const newObject = t.optionalMemberExpression(
+            path.node.object,
+            path.node.property as t.Expression,
+            path.node.computed,
+            true
+          );
+
+          // 기존 노드를 새 옵셔널 체이닝 노드로 교체
+          path.replaceWith(newObject);
         }
       },
     },
