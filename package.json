@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-add-optional-chaining",
-  "version": "1.0.0-next.1",
+  "version": "1.0.0-next.2",
   "description": "Automatically add optional chaining to all members",
   "main": "./lib/index.js",
   "scripts": {
