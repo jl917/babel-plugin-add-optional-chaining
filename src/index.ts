@@ -8,6 +8,14 @@ export default function () {
         // 이미 옵셔널 체이닝이 있는 경우 무시
         if (path.node.optional) return;
 
+        // 현재 노드가 AssignmentExpression의 왼쪽이거나 UpdateExpression의 인수일 경우 무시
+        if (
+          path.parentPath.isAssignmentExpression({ left: path.node }) ||
+          path.parentPath.isUpdateExpression({ argument: path.node })
+        ) {
+          return;
+        }
+
         // 현재 노드의 루트 객체 탐색
         let current = path.node.object;
 
