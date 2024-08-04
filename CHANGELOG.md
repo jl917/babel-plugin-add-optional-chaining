@@ -1,3 +1,10 @@
+# [1.0.0-next.4](https://github.com/jl917/babel-plugin-add-optional-chaining/compare/v1.0.0-next.3...v1.0.0-next.4) (2024-08-04)
+
+
+### Bug Fixes
+
+* process env 조건 추가 ([e5367c3](https://github.com/jl917/babel-plugin-add-optional-chaining/commit/e5367c3fa6251bb6ca5ea51fe22cd999c6541880))
+
 # [1.0.0-next.3](https://github.com/jl917/babel-plugin-add-optional-chaining/compare/v1.0.0-next.2...v1.0.0-next.3) (2024-08-02)
 
 
