@@ -16,14 +16,18 @@ export default function () {
           return;
         }
 
-        // process.env를 찾기 위한 조건 추가
+        // process 및 process.env에 옵셔널 체이닝을 적용하지 않음
         const isProcessEnv =
           t.isMemberExpression(path.node.object) &&
           t.isIdentifier(path.node.object.object, { name: "process" }) &&
           t.isIdentifier(path.node.object.property, { name: "env" });
 
-        // process.env의 경우 옵셔널 체이닝을 적용하지 않음
-        if (isProcessEnv) {
+        const isProcess =
+          t.isIdentifier(path.node.object, { name: "process" }) &&
+          t.isIdentifier(path.node.property, { name: "env" });
+
+        // process 및 process.env에 대해 옵셔널 체이닝을 적용하지 않음
+        if (isProcessEnv || isProcess) {
           return;
         }
 
