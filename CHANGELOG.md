@@ -1,3 +1,10 @@
+# [1.0.0-next.5](https://github.com/jl917/babel-plugin-add-optional-chaining/compare/v1.0.0-next.4...v1.0.0-next.5) (2024-08-04)
+
+
+### Bug Fixes
+
+* process 오류 수정 ([13c4bea](https://github.com/jl917/babel-plugin-add-optional-chaining/commit/13c4bea93587cb095bf186d91b301142ce1a6483))
+
 # [1.0.0-next.4](https://github.com/jl917/babel-plugin-add-optional-chaining/compare/v1.0.0-next.3...v1.0.0-next.4) (2024-08-04)
 
 
