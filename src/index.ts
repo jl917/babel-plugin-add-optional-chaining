@@ -16,6 +16,17 @@ export default function () {
           return;
         }
 
+        // process.env를 찾기 위한 조건 추가
+        const isProcessEnv =
+          t.isMemberExpression(path.node.object) &&
+          t.isIdentifier(path.node.object.object, { name: "process" }) &&
+          t.isIdentifier(path.node.object.property, { name: "env" });
+
+        // process.env의 경우 옵셔널 체이닝을 적용하지 않음
+        if (isProcessEnv) {
+          return;
+        }
+
         // 현재 노드의 루트 객체 탐색
         let current = path.node.object;
         let shouldReplace = false;
