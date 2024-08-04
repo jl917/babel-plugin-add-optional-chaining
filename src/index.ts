@@ -16,6 +16,21 @@ export default function () {
           return;
         }
 
+        // process 및 process.env에 옵셔널 체이닝을 적용하지 않음
+        const isProcessEnv =
+          t.isMemberExpression(path.node.object) &&
+          t.isIdentifier(path.node.object.object, { name: "process" }) &&
+          t.isIdentifier(path.node.object.property, { name: "env" });
+
+        const isProcess =
+          t.isIdentifier(path.node.object, { name: "process" }) &&
+          t.isIdentifier(path.node.property, { name: "env" });
+
+        // process 및 process.env에 대해 옵셔널 체이닝을 적용하지 않음
+        if (isProcessEnv || isProcess) {
+          return;
+        }
+
         // 현재 노드의 루트 객체 탐색
         let current = path.node.object;
         let shouldReplace = false;
