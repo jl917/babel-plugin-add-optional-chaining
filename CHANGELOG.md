@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/jl917/babel-plugin-add-optional-chaining/compare/v1.0.1...v1.0.2) (2024-08-06)
+
+
+### Bug Fixes
+
+* add test case ([51cd4b6](https://github.com/jl917/babel-plugin-add-optional-chaining/commit/51cd4b68eae32fd95f49e6f0c20160ef389fbaf2))
+
 ## [1.0.1](https://github.com/jl917/babel-plugin-add-optional-chaining/compare/v1.0.0...v1.0.1) (2024-08-04)
 
 
