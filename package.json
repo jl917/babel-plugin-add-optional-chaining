@@ -4,7 +4,8 @@
   "description": "Automatically add optional chaining to all members",
   "main": "./lib/index.js",
   "scripts": {
-    "build": "node build"
+    "build": "node build",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "jl917",
@@ -29,13 +30,16 @@
     "tsconfig.json"
   ],
   "devDependencies": {
+    "@babel/core": "^7.25.2",
     "@semantic-release/changelog": "6.0.1",
     "@semantic-release/git": "10.0.1",
+    "@types/babel__core": "^7.20.5",
     "@types/babel__traverse": "^7.20.6",
     "@types/node": "^20.14.12",
     "esbuild": "^0.23.0",
     "esbuild-plugin-d.ts": "^1.3.0",
-    "semantic-release": "18.0.0"
+    "semantic-release": "18.0.0",
+    "vitest": "^2.0.5"
   },
   "publishConfig": {
     "access": "public"

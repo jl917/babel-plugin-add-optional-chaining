@@ -16,23 +16,21 @@ export default function () {
           return;
         }
 
-        // process 및 process.env에 옵셔널 체이닝을 적용하지 않음
-        const isProcessEnv =
-          t.isMemberExpression(path.node.object) &&
-          t.isIdentifier(path.node.object.object, { name: "process" }) &&
-          t.isIdentifier(path.node.object.property, { name: "env" });
-
-        const isProcess =
-          t.isIdentifier(path.node.object, { name: "process" }) &&
-          t.isIdentifier(path.node.property, { name: "env" });
-
-        // process 및 process.env에 대해 옵셔널 체이닝을 적용하지 않음
-        if (isProcessEnv || isProcess) {
-          return;
+        // 전체 체인에 process가 포함되어 있으면 옵셔널 체이닝을 적용하지 않음
+        let current: t.Expression | undefined = path.node;
+        while (t.isMemberExpression(current)) {
+          if (
+            t.isIdentifier(current.object, { name: "process" }) ||
+            (t.isMemberExpression(current.object) &&
+              t.isIdentifier(current.object.object, { name: "process" }))
+          ) {
+            return; // process와 관련된 접근은 무시
+          }
+          current = current.object;
         }
 
         // 현재 노드의 루트 객체 탐색
-        let current = path.node.object;
+        current = path.node.object;
         let shouldReplace = false;
 
         // CallExpression이 루트일 경우 옵셔널 체이닝 처리
